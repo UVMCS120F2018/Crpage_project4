@@ -5,10 +5,11 @@
 #ifndef CRPAGE_PROJECT4_SEACREATURES_H
 #define CRPAGE_PROJECT4_SEACREATURES_H
 
-#include <optional>
+#include <experimental/optional>
 #include <vector>
 #include <string>
-
+using namespace std;
+typedef experimental::optional<int> OptInt;
 namespace Mystical{
     enum leg_type{FINS, TENTICLES, CLAWS, NONE};
         struct IQ {
@@ -20,7 +21,7 @@ namespace Mystical{
 
 };
 using namespace Mystical;
-using namespace std;
+
 
 class MysticalSeaCreature {
 protected:
@@ -28,8 +29,8 @@ protected:
     bool tail;
     mystical_power power;
     IQ iq;
-    optional<leg_type>legs;
-    optional<int> num_legs;
+    leg_type legs;
+    OptInt num_legs;
     bool is_dead;
 
 public:
@@ -43,8 +44,8 @@ public:
     bool get_is_dead();
     IQ get_iq();
     bool is_tail();
-    string get_name() const;
-    int get_smartness() const;
+    string get_name() ;
+    int get_smartness() ;
 
     /*SETTERS*/
 
@@ -56,13 +57,29 @@ public:
     virtual void win_fight() = 0;
     virtual void loose_fight() = 0;
     virtual void it_was_a_tie() = 0;
-    virtual void fatal_injury() = 0;
+
+    /*
+     * calculated the MSC's IQ score.
+     */
+    int score();
 
     /*OVERLOADED OPERATORS*/
+
+    /*
+     * FIGHT!
+     */
     friend void operator * (MysticalSeaCreature &msc1, MysticalSeaCreature &msc2);
-    friend ostream& operator << (ostream& print, const MysticalSeaCreature &msc1);
+
+    /*
+     * DO THEY HAVE THE SAME POWER?!
+     */
     friend bool operator == (MysticalSeaCreature &msc1, MysticalSeaCreature &msc2);
+
+    /*
+     * BOTH GET SMARTER
+     */
     friend void operator + (MysticalSeaCreature &msc1, MysticalSeaCreature &msc2);
+
 };
 
 #endif //CRPAGE_PROJECT4_SEACREATURES_H
