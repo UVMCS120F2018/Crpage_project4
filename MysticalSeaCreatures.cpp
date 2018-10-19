@@ -8,19 +8,16 @@ MysticalSeaCreature:: MysticalSeaCreature(string a_name, mystical_power a_power,
     name = a_name;
     power = a_power;
     legs = type_legs;
-    num_legs = num_of_legs;
+    num_legs = make_optional(num_of_legs);
     iq.smartness = 50;
     iq.fights_won = 0;
     iq.fights_lost = 0;
     is_dead = false;
 }
 
-MysticalSeaCreature ::MysticalSeaCreature(string a_name, mystical_power a_power) {
-    name = a_name;
-    power = a_power;
-    legs = NONE;
-}
-
+//MysticalSeaCreature ::MysticalSeaCreature() : MysticalSeaCreature("Hank", ALWAYS_CORRECT, NULL, 0){
+//
+//}
 mystical_power MysticalSeaCreature::get_power() {
     return power;
 }
@@ -30,7 +27,7 @@ leg_type MysticalSeaCreature::get_leg_type() {
 }
 
 int MysticalSeaCreature::get_legs() {
-    return num_legs.value_or(nullptr);
+    return num_legs.value_or(-50);
 }
 
 bool MysticalSeaCreature::get_is_dead() {

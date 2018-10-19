@@ -5,11 +5,12 @@
 #ifndef CRPAGE_PROJECT4_SEACREATURES_H
 #define CRPAGE_PROJECT4_SEACREATURES_H
 
-#include <experimental/optional>
+#include <optional>
 #include <vector>
 #include <string>
+#include <iostream>
 using namespace std;
-typedef experimental::optional<int> OptInt;
+typedef optional<int> OptInt;
 namespace Mystical{
     enum leg_type{FINS, TENTICLES, CLAWS, NONE};
         struct IQ {
@@ -35,8 +36,8 @@ protected:
 
 public:
     MysticalSeaCreature(string a_name, mystical_power a_power, leg_type type_legs, int num_of_legs);
-    MysticalSeaCreature(string a_name, mystical_power a_power);
-
+//    MysticalSeaCreature(string a_name, mystical_power a_power);
+    MysticalSeaCreature();
     /*GETTERS*/
     mystical_power get_power();
     leg_type get_leg_type();
