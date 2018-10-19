@@ -37,7 +37,7 @@ protected:
 public:
     MysticalSeaCreature(string a_name, mystical_power a_power, leg_type type_legs, int num_of_legs);
 //    MysticalSeaCreature(string a_name, mystical_power a_power);
-    MysticalSeaCreature();
+//    MysticalSeaCreature();
     /*GETTERS*/
     mystical_power get_power();
     leg_type get_leg_type();
@@ -51,9 +51,11 @@ public:
     /*SETTERS*/
 
     /*METHODS*/
+
     //Because these are all different for every subclass.
     //I'm not going to write RMEs for them. Because that would make no sense.
     //Plus, their names kind of make sense.
+
     virtual void get_smarter() = 0;
     virtual void win_fight() = 0;
     virtual void loose_fight() = 0;
@@ -65,6 +67,8 @@ public:
     int score();
 
     void fatality();
+
+//    void create_death_cert();
 
     /*OVERLOADED OPERATORS*/
 

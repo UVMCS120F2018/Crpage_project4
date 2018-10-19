@@ -22,7 +22,7 @@ void Octopus ::win_fight() {
 }
 
 void Octopus ::loose_fight() {
-    iq.smartness -= 5;
+    iq.smartness -= 10;
     iq.fights_lost += 1;
     cout << name << " just lost... Awkward... " <<endl;
 }

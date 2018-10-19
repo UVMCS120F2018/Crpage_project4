@@ -105,3 +105,7 @@ void operator*(MysticalSeaCreature &msc1, MysticalSeaCreature &msc2){
         }
     }
 }
+//
+//void MysticalSeaCreature ::create_death_cert() {
+//
+//}
