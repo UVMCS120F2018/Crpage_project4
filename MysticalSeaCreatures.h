@@ -64,6 +64,8 @@ public:
      */
     int score();
 
+    void fatality();
+
     /*OVERLOADED OPERATORS*/
 
     /*

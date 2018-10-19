@@ -60,6 +60,9 @@ int MysticalSeaCreature::score() {
     return score;
 }
 
+void MysticalSeaCreature ::fatality() {
+    is_dead = true;
+}
 
 bool operator==(MysticalSeaCreature &msc1, MysticalSeaCreature &oct2) {
     return msc1.get_power() == oct2.get_power();
