@@ -24,6 +24,9 @@ Mystical Sea Creatures are Amazing! They're Mystical and awesome.
 This is why I chose to make a mystical sea creatures class. ALso, Octopus. I LOVE 
 Octopus. A lot. 
 
+if you get the chance you should 100% watch this. THEY'RE So SMART!
+`https://www.youtube.com/watch?v=Owelt6QKMKo`
+
 All the getters and setters are universal for the MCS classes,
 but the following methods are different.
 
