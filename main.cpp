@@ -3,9 +3,11 @@
 #include "Octopus.h"
 #include "Narwall.h"
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <memory>
-//#include <vector>
+
+using namespace Mystical;
 
 void game_options(string primary, string second){
     cout << endl << endl;
@@ -16,9 +18,23 @@ void game_options(string primary, string second){
     cout << "D. Fight " << second << endl;
 }
 void death_cert(string name){
-    int fill_length = (42-name.length())/2;
-    cout << setfill('~');
-    cout << setw(fill_length) << '~' << setw(42 - fill_length) << name << setw(fill_length)<< endl;
+
+    ofstream cert("../d_cert.txt");
+    cert << setfill('~');
+    cert << setw(100)<< "~"<<endl;
+    cert << setfill(' ');
+    for(int i=0; i<5; i++){
+        cert << "~" <<setw(99)<<  "~"<<endl;
+    }
+    cert <<"~" << setw(65) << "Official Death Certificate Of" << setw(34) << "~" << endl;
+    cert <<"~" << setw(50) << name << setw(49) << "~"<< endl;
+    cert <<"~" << setw(63) << "We are very sad they died" << setw(36) << "~" << endl;
+    for(int i=0; i<5; i++){
+        cert << "~" <<setw(99)<<  "~"<<endl;
+    }
+    cert << setfill('~');
+    cert << setw(100)<< "~"<<endl;
+
 }
 
 void game(Octopus creature1, Narwall creature2){
@@ -41,7 +57,8 @@ void game(Octopus creature1, Narwall creature2){
         if (choice == "a" or choice == "A") {
             creature1.get_smarter();
         } else if (choice == "b" or choice == "B") {
-            creature1.get_power();
+            cout<<"1.Invisability    2.Telepathy    3.Sparkles  4.Always being right"<<endl;
+            cout << a_name << "has a Mystical Power of : " << mystical_power(creature1.get_power()) << endl;
         } else if (choice == "c" or choice == "C") {
             cout << a_name << " has an IQ of " << creature1.get_smartness() << endl;
         } else if (choice == "d" or choice == "D") {
@@ -64,7 +81,8 @@ void game(Octopus creature1, Narwall creature2){
         if (choice == "a" or choice == "A") {
             creature2.get_smarter();
         }else if(choice == "b" or choice =="B"){
-            cout << b_name << "has a Mystical Power of : " << creature2.get_power() << endl;
+            cout<<"1.Invisability    2.Telepathy    3.Sparkles  4.Always being right"<<endl;
+            cout << b_name << "has a Mystical Power of : " << mystical_power(creature2.get_power()) << endl;
         }else if(choice == "c" or choice =="C"){
             cout << b_name << " has an IQ of " << creature2.get_smartness() << endl;
         }else if(choice == "d" or choice =="D"){
@@ -112,6 +130,14 @@ void game(Octopus creature1, Narwall creature2){
 
 }
 
+void power_choice(string name){
+    cout << "What would you like " << name << "'s Mystical Power to be?" << endl;
+    cout << "1. Invisability"<<endl;
+    cout << "2. Telepathy" << endl;
+    cout << "3. Sparkles" << endl;
+    cout << "4. Always Being Right" << endl;
+}
+
 
 int main() {
 //    unique_ptr<MysticalSeaCreature> creature1 = make_unique<Octopus>();
@@ -126,13 +152,57 @@ int main() {
     string name;
     cout << "What would you like to name your Octopus" << endl;
     cin >> name;
-    creature1 = Octopus(name);
+    cin.clear();
+    power_choice(name);
+
+    int power;
+    mystical_power pow;
+    bool valid = false;
+    while(!valid){
+        cin >> power;
+        valid = true;
+        if(power ==1 ){
+            pow = INVISABILITY;
+        }else if (power ==2 ){
+            pow = TELEPATHY;
+        }else if (power ==3 ){
+            pow = SPARKLES;
+        }else if (power ==4 ){
+            pow = ALWAYS_CORRECT;
+        }else{
+            valid = false;
+            power_choice(name);
+        }
+    }
+    creature1 = Octopus(name, pow);
 
     cin.clear();
-
     cout << "Great! Now, what would you like to call your Narwall?" << endl;
     cin >> name;
-    creature2 = Narwall(name);
+    cin.clear();
+    power_choice(name);
+
+    int power2;
+
+    bool valid2 = false;
+    mystical_power pow2;
+    while(!valid2){
+        cin >> power2;
+        valid2 = true;
+        if(power2 ==1 ){
+            pow2 = INVISABILITY;
+        }else if (power2 ==2 ){
+            pow2 = TELEPATHY;
+        }else if (power2 ==3 ){
+            pow2 = SPARKLES;
+        }else if (power2 ==4 ){
+            pow2 = ALWAYS_CORRECT;
+        }else{
+            valid2 = false;
+            power_choice(name);
+        }
+    }
+    creature2 = Narwall(name, pow2);
 
     cout << "Cool Stuff!" << endl;
     cout << "Now we can start to play!" << endl;
@@ -140,11 +210,6 @@ int main() {
     cout << "1. The first creature to reach an IQ of 100 wins." << endl;
     cout << "2. You can raise and lower the IQ of each creature by making them fight or learn tricks / do things." << endl;
     cout << "3. This should really be a 2 player game... but I know you're just one TA so please try to pretend." << endl;
-    cout << "got it?" << endl;
-    string useless;
-    cin >> useless;
-    cout << "jokes on you. It doesn't matter. Have fun!!" << endl;
 
     game(creature1, creature2);
-
 };

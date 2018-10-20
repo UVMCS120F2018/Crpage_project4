@@ -11,17 +11,22 @@
 #include <iostream>
 using namespace std;
 typedef optional<int> OptInt;
+
 namespace Mystical{
-    enum leg_type{FINS, TENTICLES, CLAWS, NONE};
-        struct IQ {
+    namespace mystical_enums{
+        enum mystical_power{INVISABILITY, TELEPATHY, SPARKLES, ALWAYS_CORRECT};
+        enum leg_type{FINS, TENTICLES, CLAWS, NONE};
+    }
+    struct IQ {
             int smartness;
             int fights_won;
             int fights_lost;
     };
-    enum mystical_power{INVISABILITY, TELEPATHY, SPARKLES, ALWAYS_CORRECT, MIND_CONTROL};
-
 };
+
+
 using namespace Mystical;
+using namespace Mystical :: mystical_enums;
 
 
 class MysticalSeaCreature {
@@ -36,8 +41,6 @@ protected:
 
 public:
     MysticalSeaCreature(string a_name, mystical_power a_power, leg_type type_legs, int num_of_legs);
-//    MysticalSeaCreature(string a_name, mystical_power a_power);
-//    MysticalSeaCreature();
     /*GETTERS*/
     mystical_power get_power();
     leg_type get_leg_type();
