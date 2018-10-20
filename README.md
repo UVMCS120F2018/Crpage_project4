@@ -1,5 +1,5 @@
 #### Crpage_project4
-#Narwalls and Octopus
+# Narwalls and Octopus
 
 So, the basis of this project is a little game. 
 It's a 2 player (or one very lonely person) game where 
